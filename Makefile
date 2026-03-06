@@ -1,3 +1,3 @@
 run: 
-	g++ main.cpp DoublyLinkedList.cpp -o Main 
-	./Main
+	g++ main.cpp utils/DoublyLinkedList.cpp -o build/Main 
+	./build/Main
