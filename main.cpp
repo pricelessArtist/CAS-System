@@ -32,6 +32,6 @@ int main() {
     list2.insertNodeAfter('9', '8');
     list2.iterateForward();
 
-    abacus.Addition(list, list2, '5', '7');
+    abacus.Addition(list, list2, '7', '5');
     return 0;
 }

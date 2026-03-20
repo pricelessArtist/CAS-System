@@ -29,8 +29,8 @@ Result Abacus::Addition(DoubleLinkedList list1, DoubleLinkedList list2, char num
             list2CurrentNode = list2CurrentNode->nextNode;
         }
         
-        //loops backwards
-        while (leftPointer != list1.firstNode || rightPointer == list2.lastNode) {
+        //loops backwards for left pointer
+        while (leftPointer != list1.firstNode) {
             cout << "leftPointer elements: " << leftPointer->element << endl;
             cout << "rightPointer elements: " << rightPointer->element << endl;
             
@@ -63,5 +63,51 @@ Result Abacus::Addition(DoubleLinkedList list1, DoubleLinkedList list2, char num
     } else {
         // else number2 is less than number1, the rightPointer is decreasing, leftPointer is increasing. 
         cout << "Number " << number2 << " is less than number " << number1 << endl;  
+        
+        list1CurrentNode = list1.firstNode;
+        list2CurrentNode = list2.lastNode;
+
+        while (list1CurrentNode != nullptr && list2CurrentNode != nullptr) {
+            if (list1CurrentNode->element == number1) {
+                leftPointer = list1CurrentNode;
+            }
+            list1CurrentNode = list1CurrentNode->nextNode;
+        
+            if (list2CurrentNode->element == number2) {
+                rightPointer = list2CurrentNode;
+            }
+            list2CurrentNode = list2CurrentNode->previousNode;
+        }
+
+        //loops backwards for right pointer
+        while (rightPointer != list2.firstNode) {
+            cout << "leftPointer elements: " << leftPointer->element << endl;
+            cout << "rightPointer elements: " << rightPointer->element << endl;
+
+            //we need to check for a carry on the left pointer
+            if (leftPointer == list1.lastNode) {
+                leftPointer = list1.firstNode;
+                result.isCarry = true;
+            } 
+            leftPointer = leftPointer->nextNode;
+            rightPointer = rightPointer->previousNode;
+        }
+
+        result.digit = leftPointer;
+
+        if (result.isCarry == true) {
+            result.carry = leftPointer->previousNode;
+            cout << "Left pointer: " << leftPointer->previousNode->element << endl;
+            cout << "Right pointer: " << rightPointer->element << endl; 
+            cout << "Result digit: " << result.digit->previousNode->element << endl;
+            cout << "result has a carry: " << result.carry->previousNode->element << endl;
+        } else {
+            cout << "Left pointer: " << leftPointer->element << endl;
+            cout << "Right pointer: " << rightPointer->element << endl; 
+            cout << "Result digit: " << result.digit->element << endl;
+            cout << "No carry" << endl;
+        }
+        
+        return result;
     }
 }
