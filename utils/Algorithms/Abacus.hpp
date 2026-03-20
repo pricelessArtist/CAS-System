@@ -24,8 +24,6 @@ class Abacus {
     Node* leftPointer = nullptr;
     // rightPointer for rightLinked list
     Node* rightPointer = nullptr;
-    // leftLinkedListBase for base number system, number of elements in the linkedList
-    //  leftLinkedListBase for base number system, number of elements in the linkedList
     public:  
         // adding two numbers from the 
         Result Addition(DoubleLinkedList list1, DoubleLinkedList list2, char number1, char number2);  
